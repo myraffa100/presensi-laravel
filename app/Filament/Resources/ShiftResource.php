@@ -20,7 +20,7 @@ class ShiftResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-c-clipboard-document-list';
     protected static ?int $navigationSort = 5;
 
-    protected static ?string $navigationGroup = 'Office Management';
+    protected static ?string $navigationGroup = 'SAC Management';
 
     public static function form(Form $form): Form
     {

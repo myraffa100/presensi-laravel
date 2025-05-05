@@ -60,13 +60,13 @@ class LeaveResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            // ->modifyQueryUsing(function (Builder $query) {
-            //     $is_super_admin = Auth::user()->hasRole('super_admin');
+            ->modifyQueryUsing(function (Builder $query) {
+                $is_super_admin = Auth::user()->hasRole('super_admin');
 
-            //     if (!$is_super_admin) {
-            //         $query->where('user_id', Auth::user()->id);
-            //     }
-            // })
+                if (!$is_super_admin) {
+                    $query->where('user_id', Auth::user()->id);
+                }
+            })
             ->columns([
 
                 Tables\Columns\TextColumn::make('user.name')

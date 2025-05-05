@@ -38,6 +38,16 @@ class Presensi extends Component
         $schedule = Schedule::where('user_id', Auth::user()->id)->first();
 
         $today = Carbon::today()->format('Y-m-d');
+        $approvedLeave =  Leave::where('user_id', Auth::user()->id)
+            ->where('status', 'approved')
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->exists();
+
+            if ($approvedLeave) {
+                session()->flash('error', 'Anda tidak dapat melakukan presensi karena sedang cuti.');
+                return;
+            }
 
         if ($schedule) {
             $attedance = Attendance::where('user_id', Auth::user()->id)

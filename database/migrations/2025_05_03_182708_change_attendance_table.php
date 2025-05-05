@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('attendances', function (Blueprint $table) {
@@ -19,16 +16,13 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('attendances', function (Blueprint $table) {
             $table->renameColumn('start_latitude', 'latitude');
             $table->renameColumn('start_longitude', 'longitude');
-            $table->dropClumn('end_latitude');
-            $table->dropClumn('end_longitude');
+            $table->dropColumn('end_latitude');
+            $table->dropColumn('end_longitude');
         });
     }
 };
